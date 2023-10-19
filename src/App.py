@@ -12,7 +12,7 @@ class App:
         server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         server_socket.bind((self.SERVER_HOST, self.SERVER_PORT))
         server_socket.listen(1)
-        print(f"listening on port: {self.SERVER_PORT}")
+        print(f"listening on: http://localhost:{self.SERVER_PORT}")
 
         while True:
             # wait for client connection
@@ -37,6 +37,7 @@ class App:
             try:
                 fin = open(file_name)
                 content = fin.read()
+                listy = content.split(" ")
                 fin.close()
             except FileNotFoundError:
                 response = "HTTP/1.0 404 NOT FOUND\n\nFile Not Found"
